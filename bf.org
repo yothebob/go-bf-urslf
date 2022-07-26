@@ -1,0 +1,37 @@
+> move right
+< move left
++ add 1
+- subtract 1
+[] loops [ beginning  ] end EX: [>+ ] a loop will continue till value at pointer hits 0 
+[] can also be used for comments EX: [hello world]
+. print ASCII characters
+EX: print 3
+#0: 0 #1: 0
+
+#+BEGIN_SRC brainfuck
++++ +++ >
++++ <
+[
+> ++++ ++++
+< -
+]
+
+>. 
+#+END_SRC
+
+, read one char from input into value at pointer
+
+EX: take input and print d
+
+#+BEGIN_SRC brainfuck
+>, 1:49
+<
++++ +++ >
++++ <
+[
+> ++++ ++++
+< -
+]
+
+>. 
+#+END_SRC
