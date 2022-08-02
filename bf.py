@@ -1,9 +1,15 @@
-
+# switch to linkedlists... eventually
 class LinkedList:
+    def __init__(head=None):
+        self.head = head
+
+class Node:
     def __init__(head=False, next=None, prev=None):
         self.head = head
         self.next = next
         self.prev = prev
+
+
         
 class Interpreter:
 
@@ -38,7 +44,13 @@ class Interpreter:
                 return 
             else:
                 self.enterpret(loop_code)
-            
+
+    def show_ascii(self):
+        print(chr(self.pointers[self.pointer_index]))
+
+    def get_input(self):
+        self.pointers[self.pointer_index] += input()
+        
     def enterpret(self, code):
         for index in range(len(code)):
             if code[index] == ">":
@@ -54,9 +66,9 @@ class Interpreter:
             elif code[index] == "[":
                 self.run_loop(code[(index+1):])
             elif code[index] == ",":
-                pass # get input
+                self.get_input()
             elif code[index] == ".":
-                pass # print ascii char
+                self.show_ascii()
         print(self.pointers)
 
     def run(self):
