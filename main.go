@@ -5,7 +5,20 @@ import (
 	"fmt"
 )
 
-func interpret(code string, list []int, pointer int) {
+
+func run_loop(code string, list []int, pointer int) {
+	fmt.Println(list)
+	for {
+		if list[pointer] <= 0 {
+			return
+		} else {
+			interpret(code,list,pointer)
+		}
+	}
+}
+
+
+func interpret(code string, list []int, pointer int) ([]int) {
 	for i:=0; i < len(code);i++ {
 
 		switch string(code[i]) {
@@ -38,11 +51,12 @@ func interpret(code string, list []int, pointer int) {
 
 		case "[":
 			//startloop
-			fmt.Println(string(code[i]))
+			fmt.Println(code[(i+1):])
+			run_loop(code[(i+1):],list,pointer)
 
 		case "]":
+			break
 			//endloop
-			fmt.Println(string(code[i]))
 
 		case ".":
 			//show ascii
@@ -61,6 +75,7 @@ func interpret(code string, list []int, pointer int) {
 			}
 		}
 	}
+	return list
 }
 
 func main(){
@@ -69,7 +84,7 @@ func main(){
 	pointer := 0
 	list := []int{0}
 	fmt.Scanln(&bf_code)
-	interpret(bf_code, list, pointer)
-	fmt.Println(list)
+	executed := interpret(bf_code, list, pointer)
+	fmt.Println(executed)
 }
 
